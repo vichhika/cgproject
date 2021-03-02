@@ -24,6 +24,7 @@ void drawCircle(float xCenter,float yCenter,int r){
 
 void drawSinWave(float amplitude,float frequency,float theta){
     int interval = centerPoint[0]*4;
+    int yScale = centerPoint[0]/10;
     float unit,rand;
     glBegin(GL_LINE_STRIP);
     for (int i=0;i<interval;i++){
@@ -31,7 +32,7 @@ void drawSinWave(float amplitude,float frequency,float theta){
         rand = (6.28 * frequency * unit) + theta;
         glVertex2i(
                     unit,
-                    centerPoint[1]+((amplitude * sin(rand))*(centerPoint[0]))
+                    centerPoint[1]+((amplitude * sin(rand))*(centerPoint[0]/yScale))
                 );
     }
     glEnd();
