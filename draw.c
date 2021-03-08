@@ -38,3 +38,28 @@ void drawSinWave(float amplitude,float frequency,float theta){
     glEnd();
 
 }
+
+void drawStar(float CenterPoint,float r){
+
+    CenterPoint += centerPoint[0];
+
+    float starCos(int phase){
+        return (CenterPoint + (float)(r*cos((0.94 + (phase*3.14)/5))));
+    }
+
+    float starSin(int phase){
+        return (CenterPoint + (float)(r*sin((0.94 + (phase*3.14)/5))));
+    }
+
+    glBegin(GL_LINE_STRIP);
+    glVertex2f(starCos(1),starSin(1));
+    glVertex2f(starCos(7),starSin(7));
+    glVertex2f(starCos(3),starSin(3));
+    glVertex2f(starCos(9),starSin(9));
+    glVertex2f(starCos(5),starSin(5));
+    glVertex2f(starCos(1),starSin(1));
+    glEnd();
+
+
+}
+

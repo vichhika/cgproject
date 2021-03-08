@@ -9,4 +9,5 @@
 void drawStrings(float xStart,float yStart,char *string);
 void drawCircle(float xCenter,float yCenter,int r);
 void drawSinWave(float amplitude,float frequency,float theta);
+void drawStar(float CenterPoint,float r);
 #endif
