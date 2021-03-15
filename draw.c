@@ -87,4 +87,38 @@ void drawGraphPoint(ARRAY_2D *arr){
 
     }
 }
-//void drawGraphBar(ARRAY_2D *arr);
+void drawGraphBar(ARRAY_2D *arr){
+    int a = 1, b = (centerPoint[0]/scalePoint)-1;
+    int size = arr->rows;
+    char labelY[12];
+    float arrX[size];
+    float arrY[size];
+    for(int i=0;i<size;i++) {
+        arrY[i] = arr->index[i][0];
+        arrX[i] = i;
+    }
+    float minX = findMin(arrX,size),
+          maxX = findMax(arrX,size),
+          minY = findMin(arrY,size),
+          maxY = findMax(arrY,size);
+    for(int i = 0;i<size;i++){
+        sprintf(labelY,"%g",arr->index[i][0]);
+        arrX[i] = featureScaling(a,b,arrX[i],minX,maxX,minX);
+        arrY[i] = featureScaling(a,b,arrY[i],minY,maxY,minY);
+        drawBar(arrX[i],arrY[i],3);
+        drawStrings(arrX[i]-0.2,-0.5,arr->label[i]);
+        drawStrings(-1.5,arrY[i]-0.35,labelY);
+
+    }
+}
+void drawBar(float xCenter,float yCenter,int size){
+    int x,y;
+    xCenter = centerPoint[0] + xCenter*scalePoint;
+    yCenter = centerPoint[1] + yCenter*scalePoint;
+    glBegin(GL_POLYGON);
+    glVertex2i(xCenter-size,centerPoint[0]);
+    glVertex2i(xCenter-size,yCenter);
+    glVertex2i(xCenter+size,yCenter);
+    glVertex2i(xCenter+size,centerPoint[0]);
+    glEnd();
+}

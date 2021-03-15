@@ -32,7 +32,7 @@ void cgMenu(int choose)
   }
   else
     if(choose>=1 && choose<=3) axisColor = choose;
-    else if(choose>=11 && choose<=13) color = choose;
+    else if(choose>=11 && choose<=14) color = choose;
     else if(choose>=21 && choose<=23) draw = choose;
     else if(choose>=31 && choose<=32) graph = choose;
     glutPostRedisplay();
@@ -51,6 +51,7 @@ void cgCreateMenu(void)
   glutAddMenuEntry("Brown", 11);
   glutAddMenuEntry("Cyan", 12);
   glutAddMenuEntry("Pink", 13);
+  glutAddMenuEntry("Black", 14);
 
   draw = glutCreateMenu(cgMenu);
   glutAddMenuEntry("Circle", 21);
@@ -83,6 +84,7 @@ void display(void)
   if(color == 11) glColor3f(0.65,0.16,0.16);
   else if(color == 12) glColor3f(0,1,1);
   else if(color == 13) glColor3f(1,0.75,0.80);
+  else if(color == 14) glColor3f(0,0,0);
 
   if(draw == 21){
     x = 0;
@@ -101,11 +103,14 @@ void display(void)
     r = 100;
     drawStar(x,r);
   }
-
+  else if(graph == 31){
+    drawGraphPoint(&vector);
+  }
+  else if(graph == 32){
+    drawGraphBar(&vector);
+  }
+  graph = 0;
   draw = 0;
-  loadDataLabel(&vector,"./data/lab5_expense.txt");
-  glColor3f(0,1,1);
-  drawGraphPoint(&vector);
   glFlush();
 
 }
@@ -142,6 +147,10 @@ void create2vector()
 
 int main(int argc, char **argv)
 {
+  //data loading
+  loadDataLabel(&vector,"./data/lab5_expense.txt");
+
+
   glutInit(&argc, argv);
   glutInitWindowSize(winSizeX, winSizeY);
   glutInitWindowPosition(0, 0);

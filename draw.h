@@ -12,5 +12,5 @@ void drawSinWave(float amplitude,float frequency,float theta);
 void drawStar(float CenterPoint,float r);
 void drawGraphPoint(ARRAY_2D *arr);
 void drawGraphBar(ARRAY_2D *arr);
-void drawBar(float xCenter,float yCenter);
+void drawBar(float xCenter,float yCenter,int size);
 #endif
