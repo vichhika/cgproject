@@ -6,7 +6,7 @@ void drawStrings(float xStart,float yStart,char *string){
     xStart = centerPoint[0] + xStart*scalePoint;
     yStart = centerPoint[1] + yStart*scalePoint;
     glRasterPos2f(xStart,yStart);
-    glutBitmapString(GLUT_BITMAP_9_BY_15,string);
+    glutBitmapString(GLUT_BITMAP_8_BY_13,string);
 }
 
 void drawCircle(float xCenter,float yCenter,int r){
@@ -63,3 +63,28 @@ void drawStar(float CenterPoint,float r){
 
 }
 
+void drawGraphPoint(ARRAY_2D *arr){
+    int a = 1, b = (centerPoint[0]/scalePoint)-1;
+    int size = arr->rows;
+    char labelY[12];
+    float arrX[size];
+    float arrY[size];
+    for(int i=0;i<size;i++) {
+        arrY[i] = arr->index[i][0];
+        arrX[i] = i;
+    }
+    float minX = findMin(arrX,size),
+          maxX = findMax(arrX,size),
+          minY = findMin(arrY,size),
+          maxY = findMax(arrY,size);
+    for(int i = 0;i<size;i++){
+        sprintf(labelY,"%g",arr->index[i][0]);
+        arrX[i] = featureScaling(a,b,arrX[i],minX,maxX,minX);
+        arrY[i] = featureScaling(a,b,arrY[i],minY,maxY,minY);
+        drawCircle(arrX[i],arrY[i],3);
+        drawStrings(arrX[i]-0.35,-0.5,arr->label[i]);
+        drawStrings(-1.5,arrY[i]-0.35,labelY);
+
+    }
+}
+//void drawGraphBar(ARRAY_2D *arr);

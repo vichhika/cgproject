@@ -170,3 +170,28 @@ void crossProduct(ARRAY_2D *vector1,ARRAY_2D *vector2,ARRAY_2D *result){
         result->index[0][2] = vector1->index[0][0]*vector2->index[0][1] - vector1->index[0][1]*vector2->index[0][0]; 
     }else printf("crossProduct: Incorrect rule !!!\n");
 }
+
+float featureScaling(float a,float b,float x,float mean,float max,float min){
+    return a + ((x-mean)*(b-a))/(max-min);
+}
+float findMean(float arr[],int size){
+    float b = 0;
+    for(int i=0;i<size;i++){
+        b += arr[i];
+    }
+    return b/size;
+}
+float findMin(float arr[],int size){
+    float b = arr[0];
+    for(int i=0;i<size;i++){
+        if(b > arr[i]) b = arr[i];
+    }
+    return b;
+}
+float findMax(float arr[],int size){
+    float b = arr[0];
+    for(int i=0;i<size;i++){
+        if(b < arr[i]) b = arr[i];
+    }
+    return b;
+}
