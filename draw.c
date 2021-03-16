@@ -63,7 +63,7 @@ void drawStar(float CenterPoint,float r){
 
 }
 
-void drawGraphPoint(ARRAY_2D *arr){
+void drawGraphPoint(ARRAY_2D *arr,int toggle){
     int a = 1, b = (centerPoint[0]/scalePoint)-1;
     int size = arr->rows;
     char labelY[12];
@@ -82,12 +82,15 @@ void drawGraphPoint(ARRAY_2D *arr){
         arrX[i] = featureScaling(a,b,arrX[i],minX,maxX,minX);
         arrY[i] = featureScaling(a,b,arrY[i],minY,maxY,minY);
         drawCircle(arrX[i],arrY[i],3);
+    }
+    for(int i = 0;i<size;i++){
+        if(toggle == 0) glColor3f(1,1,1);
         drawStrings(arrX[i]-0.35,-0.5,arr->label[i]);
         drawStrings(-1.5,arrY[i]-0.35,labelY);
 
     }
 }
-void drawGraphBar(ARRAY_2D *arr){
+void drawGraphBar(ARRAY_2D *arr,int toggle){
     int a = 1, b = (centerPoint[0]/scalePoint)-1;
     int size = arr->rows;
     char labelY[12];
@@ -106,6 +109,9 @@ void drawGraphBar(ARRAY_2D *arr){
         arrX[i] = featureScaling(a,b,arrX[i],minX,maxX,minX);
         arrY[i] = featureScaling(a,b,arrY[i],minY,maxY,minY);
         drawBar(arrX[i],arrY[i],3);
+    }
+    for(int i = 0;i<size;i++){
+        if(toggle == 0) glColor3f(1,1,1);
         drawStrings(arrX[i]-0.2,-0.5,arr->label[i]);
         drawStrings(-1.5,arrY[i]-0.35,labelY);
 

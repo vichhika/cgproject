@@ -12,7 +12,7 @@ void create2vector();
 
 ARRAY_2D vector, matrix, result;
 
-int winSizeX = 700, winSizeY = 700, scale = 35, axisColor = 0,color = 0,draw = 0,graph = 0;
+int winSizeX = 700, winSizeY = 700, scale = 35, axisColor = 0,color = 0,draw = 0,graph = 0,toggle= 0,tmpGraph = 0;
 int x,y,z,r;
 
 void initDisplay(void)
@@ -35,6 +35,7 @@ void cgMenu(int choose)
     else if(choose>=11 && choose<=14) color = choose;
     else if(choose>=21 && choose<=23) draw = choose;
     else if(choose>=31 && choose<=32) graph = choose;
+    else if(choose>=41 && choose<=42) toggle = choose;
     glutPostRedisplay();
 }
 
@@ -62,11 +63,16 @@ void cgCreateMenu(void)
   glutAddMenuEntry("Point", 31);
   glutAddMenuEntry("Bar Chart", 32);
   
+  toggle = glutCreateMenu(cgMenu);
+  glutAddMenuEntry("ON", 42);
+  glutAddMenuEntry("OFF", 41);
+  
   glutCreateMenu(cgMenu);
   glutAddSubMenu("Axis Color", axisColor);
   glutAddSubMenu("Color",colors);
   glutAddSubMenu("Draw",draw);
   glutAddSubMenu("Graph",graphs);
+  glutAddSubMenu("Toggle Label",toggle);
 
   glutAddMenuEntry("Exit", 0);
   glutAttachMenu(GLUT_RIGHT_BUTTON);
@@ -104,13 +110,17 @@ void display(void)
     drawStar(x,r);
   }
   else if(graph == 31){
-    drawGraphPoint(&vector);
+    tmpGraph = 1;
+    drawGraphPoint(&vector,(41-toggle));
   }
   else if(graph == 32){
-    drawGraphBar(&vector);
+    tmpGraph = 2;
+    drawGraphBar(&vector,(41-toggle));
   }
-  graph = 0;
-  draw = 0;
+  else if(toggle == 41 || toggle == 42){
+    if(tmpGraph == 1) drawGraphPoint(&vector,(41-toggle));
+    else if(tmpGraph == 2) drawGraphBar(&vector,(41-toggle));
+  }
   glFlush();
 
 }
