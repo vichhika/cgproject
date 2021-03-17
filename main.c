@@ -121,6 +121,8 @@ void display(void)
     if(tmpGraph == 1) drawGraphPoint(&vector,(41-toggle));
     else if(tmpGraph == 2) drawGraphBar(&vector,(41-toggle));
   }
+  draw = 0;
+  graph = 0;
   glFlush();
 
 }
