@@ -78,12 +78,12 @@ void drawGraphPoint(ARRAY_2D *arr,int toggle){
           minY = findMin(arrY,size),
           maxY = findMax(arrY,size);
     for(int i = 0;i<size;i++){
-        sprintf(labelY,"%g",arr->index[i][0]);
         arrX[i] = featureScaling(a,b,arrX[i],minX,maxX,minX);
         arrY[i] = featureScaling(a,b,arrY[i],minY,maxY,minY);
         drawCircle(arrX[i],arrY[i],3);
     }
     for(int i = 0;i<size;i++){
+        sprintf(labelY,"%g",arr->index[i][0]);
         if(toggle == 0) glColor3f(1,1,1);
         drawStrings(arrX[i]-0.35,-0.5,arr->label[i]);
         drawStrings(-1.5,arrY[i]-0.35,labelY);
@@ -105,12 +105,12 @@ void drawGraphBar(ARRAY_2D *arr,int toggle){
           minY = findMin(arrY,size),
           maxY = findMax(arrY,size);
     for(int i = 0;i<size;i++){
-        sprintf(labelY,"%g",arr->index[i][0]);
         arrX[i] = featureScaling(a,b,arrX[i],minX,maxX,minX);
         arrY[i] = featureScaling(a,b,arrY[i],minY,maxY,minY);
         drawBar(arrX[i],arrY[i],3);
     }
     for(int i = 0;i<size;i++){
+        sprintf(labelY,"%g",arr->index[i][0]);
         if(toggle == 0) glColor3f(1,1,1);
         drawStrings(arrX[i]-0.2,-0.5,arr->label[i]);
         drawStrings(-1.5,arrY[i]-0.35,labelY);
