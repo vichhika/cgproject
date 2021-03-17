@@ -2,7 +2,6 @@
 #include "draw.h"
 #include "struct.h"
 #include "calculate.h"
-#include "menu.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
