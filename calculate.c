@@ -1,5 +1,7 @@
 #include "calculate.h"
 
+extern float centerPoint[2],scalePoint;
+
 void preMultiply(ARRAY_2D *vector,ARRAY_2D *matrix,ARRAY_2D *result){
     if(vector->cols + matrix->rows == 2){
         setSizeArray2D(result,vector->rows,matrix->cols);
@@ -194,4 +196,39 @@ float findMax(float arr[],int size){
         if(b < arr[i]) b = arr[i];
     }
     return b;
+}
+
+float degToRed(float num){
+    return num*(M_PI/180.0);
+}
+
+void createTranslationMatrix(ARRAY_2D *arr,float des){
+    for(int i=0;i<arr->rows;i++){
+        arr->index[i][0] += des;
+    }
+}
+void createScalingMatrix(ARRAY_2D *arr,float r){
+    float originx = arr->index[4][0];
+    float originy = arr->index[4][1];
+    for(int i=0;i<arr->rows;i++){
+        arr->index[i][0] -= originx;
+        arr->index[i][1] -= originy;
+        arr->index[i][0] *= r;
+        arr->index[i][1] *= r;
+        arr->index[i][0] += originx;
+        arr->index[i][1] += originy;
+    }
+    
+}
+void createRotationMatrix(ARRAY_2D *arr,float rad){
+    float originx = arr->index[4][0];
+    float originy = arr->index[4][1];
+    for(int i=0;i<arr->rows;i++){
+        arr->index[i][0] -= originx;
+        arr->index[i][1] -= originy;
+        arr->index[i][0] = arr->index[i][0]*cos(rad) - arr->index[i][1]*sin(rad);
+        arr->index[i][1] = arr->index[i][1]*cos(rad) + arr->index[i][0]*sin(rad);
+        arr->index[i][0] += originx;
+        arr->index[i][1] += originy;
+    }
 }

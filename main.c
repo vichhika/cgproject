@@ -10,6 +10,7 @@ void create1vector();
 void create2vector();
 
 ARRAY_2D vector, matrix, result;
+ARRAY_2D *arr;
 
 int winSizeX = 700, winSizeY = 700, scale = 35, axisColor = 0,color = 0,draw = 0,graph = 0,toggle= 0,tmpGraph = 0;
 int x,y,z,r;
@@ -122,6 +123,8 @@ void display(void)
   }
   draw = 0;
   graph = 0;
+
+  drawWindMill(&vector);
   glFlush();
 
 }
@@ -156,11 +159,83 @@ void create2vector()
   inputArray2D(&matrix);
 }
 
+void skeyMenu(int key,int xmouse, int ymouse){
+  
+  switch(key){
+    case GLUT_KEY_LEFT:
+      createTranslationMatrix(&vector,-scale);
+      printf("Move to the left 1 step\n");
+      break;
+    case GLUT_KEY_RIGHT:
+      createTranslationMatrix(&vector,scale);
+      printf("Move to the right 1 step\n");
+      break;
+    default:
+      break;
+
+  }
+  glutPostRedisplay(); 
+}
+void keyMenu(unsigned char key,int xmouse, int ymouse){
+  
+  switch(key){
+    case '+':
+      createScalingMatrix(&vector,1.1);
+      printf("Zoom in 10\%\n");
+      break;
+    case '-':
+      createScalingMatrix(&vector,0.9);
+      printf("Zoom out 10\%\n");
+      break;
+    case 'l':
+      createRotationMatrix(&vector,0.017);
+      printf("Rotate 1 degree of anticlock\n");
+      break;
+    case 'r':
+      createRotationMatrix(&vector,-0.017);
+      printf("Rotate 1 degree of clock\n");
+      break;
+    default:
+      break;
+
+  }
+  glutPostRedisplay(); 
+}
+
 int main(int argc, char **argv)
 {
   //data loading
   loadDataLabel(&vector,"./data/lab5_expense.txt");
 
+  float xCenter = winSizeX/2;
+  float yCenter = winSizeY/2;
+  setSizeArray2D(&vector,13,2);
+  vector.index[0][0] = xCenter-3*scale;
+  vector.index[0][1] = yCenter+3*scale;
+  vector.index[1][0] = xCenter+3*scale;
+  vector.index[1][1] = yCenter+3*scale;
+  vector.index[2][0] = xCenter+3*scale;
+  vector.index[2][1] = yCenter-3*scale;
+  vector.index[3][0] = xCenter-3*scale;
+  vector.index[3][1] = yCenter-3*scale;
+  vector.index[4][0] = xCenter;
+  vector.index[4][1] = yCenter;
+  vector.index[5][0] = xCenter-3*scale;
+  vector.index[5][1] = yCenter+3*scale;
+  vector.index[6][0] = xCenter;
+  vector.index[6][1] = yCenter+3*2*scale;
+  vector.index[7][0] = xCenter+3*scale;
+  vector.index[7][1] = yCenter+3*scale;
+  vector.index[8][0] = xCenter+3*2*scale;
+  vector.index[8][1] = yCenter;
+  vector.index[9][0] = xCenter+3*scale;
+  vector.index[9][1] = yCenter-3*scale;
+  vector.index[10][0] = xCenter;
+  vector.index[10][1] = yCenter-3*2*scale;
+  vector.index[11][0] = xCenter-3*scale;
+  vector.index[11][1] = yCenter-3*scale;
+  vector.index[12][0] = xCenter-3*2*scale;
+  vector.index[12][1] = yCenter;
 
   glutInit(&argc, argv);
   glutInitWindowSize(winSizeX, winSizeY);
@@ -168,6 +243,8 @@ int main(int argc, char **argv)
   glutCreateWindow("CG Project");
   initDisplay();
   cgCreateMenu();
+  glutSpecialFunc(skeyMenu);
+  glutKeyboardFunc(keyMenu);
   glutDisplayFunc(display);
   glutMainLoop();
   return 0;

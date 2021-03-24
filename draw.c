@@ -128,3 +128,34 @@ void drawBar(float xCenter,float yCenter,int size){
     glVertex2i(xCenter+size,centerPoint[0]);
     glEnd();
 }
+
+void drawWindMill(ARRAY_2D *arr){
+    
+    glBegin(GL_POLYGON);
+    glVertex2i(arr->index[0][0],arr->index[0][1]);
+    glVertex2i(arr->index[1][0],arr->index[1][1]);
+    glVertex2i(arr->index[2][0],arr->index[2][1]);
+    glVertex2i(arr->index[3][0],arr->index[3][1]);
+    glEnd();
+    glColor3f(0,1,0);
+    glBegin(GL_POLYGON);
+    glVertex2i(arr->index[4][0],arr->index[4][1]);
+    glVertex2i(arr->index[5][0],arr->index[5][1]);
+    glVertex2i(arr->index[6][0],arr->index[6][1]);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glVertex2i(arr->index[4][0],arr->index[4][1]);
+    glVertex2i(arr->index[7][0],arr->index[7][1]);
+    glVertex2i(arr->index[8][0],arr->index[8][1]);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glVertex2i(arr->index[4][0],arr->index[4][1]);
+    glVertex2i(arr->index[9][0],arr->index[9][1]);
+    glVertex2i(arr->index[10][0],arr->index[10][1]);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glVertex2i(arr->index[4][0],arr->index[4][1]);
+    glVertex2i(arr->index[11][0],arr->index[11][1]);
+    glVertex2i(arr->index[12][0],arr->index[12][1]);
+    glEnd();
+}

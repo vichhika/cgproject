@@ -2,6 +2,10 @@
     "files.associations": {
         "cmath": "c",
         "complex": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "*.tcc": "c",
+        "vector": "c",
+        "functional": "c",
+        "random": "c"
     }
 }
