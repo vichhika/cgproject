@@ -4,16 +4,16 @@ void setSizeArray2D(ARRAY_2D *arr,int rows,int cols){
     if(!(arr->rows+arr->cols)){
         arr->rows = rows;
         arr->cols = cols;
-        arr->index = (float **)malloc(rows * sizeof(float *));
+        arr->index = (double **)malloc(rows * sizeof(double *));
         arr->label = (char **)malloc(rows * sizeof(char *));
-        for(int i=0;i<rows;i++) arr->index[i] = (float *)malloc(cols * sizeof(float));
+        for(int i=0;i<rows;i++) arr->index[i] = (double *)malloc(cols * sizeof(double));
         for(int i=0;i<rows;i++) arr->label[i] = (char *)malloc(cols * sizeof(char*));
     }else{
         arr->rows = rows;
         arr->cols = cols;
-        arr->index = (float **)realloc(arr->index,rows * sizeof(float *));
+        arr->index = (double **)realloc(arr->index,rows * sizeof(double *));
         //arr->label = (char **)realloc(arr->label,rows * sizeof(char *));
-        for(int i=0;i<rows;i++) arr->index[i] = (float *)realloc(arr->index[i],cols * sizeof(float));
+        for(int i=0;i<rows;i++) arr->index[i] = (double *)realloc(arr->index[i],cols * sizeof(double));
         //or(int i=0;i<rows;i++) arr->label[i] = (char *)realloc(arr->label[i],cols * sizeof(char*));
     }
 }
@@ -62,16 +62,12 @@ void loadDataLabel(ARRAY_2D *arr,char *load_FILE){
         int  j = 0;
         for(token =strtok_r(text,",",&rest);token != NULL;token = strtok_r(NULL,",",&rest)){
             if(j == 0){
-                //printf("s:%s ",token);
                 strncpy(arr->label[i],token,3);
                 j++;
             }else {
-                //printf("n:%0.2f\n",atof(token));
                 arr->index[i][0] = atof(token);
             }
         }
         i++;
     }
-    //printf("%d:%d ",arr->rows,arr->cols);
-
 }

@@ -7,7 +7,7 @@
 
 typedef struct{
     char **label;
-    float **index;
+    double **index;
     int rows;
     int cols;
 }ARRAY_2D;

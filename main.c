@@ -188,12 +188,15 @@ void keyMenu(unsigned char key,int xmouse, int ymouse){
       printf("Zoom out 10\%\n");
       break;
     case 'l':
-      createRotationMatrix(&vector,0.017);
+      createRotationMatrix(&vector,0.0174533);
       printf("Rotate 1 degree of anticlock\n");
       break;
     case 'r':
-      createRotationMatrix(&vector,-0.017);
+      createRotationMatrix(&vector,-0.0174533);
       printf("Rotate 1 degree of clock\n");
+      break;
+    case 'q':
+      exit(1);
       break;
     default:
       break;

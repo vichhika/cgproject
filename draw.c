@@ -17,7 +17,7 @@ void drawCircle(float xCenter,float yCenter,int r){
     for(int i = 0; i <= 360;i++){
         x = xCenter + r*cos(i);
         y = yCenter + r*sin(i);
-        glVertex2i(x,y);
+        glVertex2d(x,y);
     }
     glEnd();
 }
@@ -30,7 +30,7 @@ void drawSinWave(float amplitude,float frequency,float theta){
     for (int i=0;i<interval;i++){
         unit = i/2;
         rand = (6.28 * frequency * unit) + theta;
-        glVertex2i(
+        glVertex2d(
                     unit,
                     centerPoint[1]+((amplitude * sin(rand))*(centerPoint[0]/yScale))
                 );
@@ -122,40 +122,41 @@ void drawBar(float xCenter,float yCenter,int size){
     xCenter = centerPoint[0] + xCenter*scalePoint;
     yCenter = centerPoint[1] + yCenter*scalePoint;
     glBegin(GL_POLYGON);
-    glVertex2i(xCenter-size,centerPoint[0]);
-    glVertex2i(xCenter-size,yCenter);
-    glVertex2i(xCenter+size,yCenter);
-    glVertex2i(xCenter+size,centerPoint[0]);
+    glVertex2d(xCenter-size,centerPoint[0]);
+    glVertex2d(xCenter-size,yCenter);
+    glVertex2d(xCenter+size,yCenter);
+    glVertex2d(xCenter+size,centerPoint[0]);
     glEnd();
+    
 }
 
 void drawWindMill(ARRAY_2D *arr){
     
     glBegin(GL_POLYGON);
-    glVertex2i(arr->index[0][0],arr->index[0][1]);
-    glVertex2i(arr->index[1][0],arr->index[1][1]);
-    glVertex2i(arr->index[2][0],arr->index[2][1]);
-    glVertex2i(arr->index[3][0],arr->index[3][1]);
+    glVertex2d(arr->index[0][0],arr->index[0][1]);
+    glVertex2d(arr->index[1][0],arr->index[1][1]);
+    glVertex2d(arr->index[2][0],arr->index[2][1]);
+    glVertex2d(arr->index[3][0],arr->index[3][1]);
     glEnd();
     glColor3f(0,1,0);
     glBegin(GL_POLYGON);
-    glVertex2i(arr->index[4][0],arr->index[4][1]);
-    glVertex2i(arr->index[5][0],arr->index[5][1]);
-    glVertex2i(arr->index[6][0],arr->index[6][1]);
+    glVertex2d(arr->index[4][0],arr->index[4][1]);
+    glVertex2d(arr->index[5][0],arr->index[5][1]);
+    glVertex2d(arr->index[6][0],arr->index[6][1]);
     glEnd();
     glBegin(GL_POLYGON);
-    glVertex2i(arr->index[4][0],arr->index[4][1]);
-    glVertex2i(arr->index[7][0],arr->index[7][1]);
-    glVertex2i(arr->index[8][0],arr->index[8][1]);
+    glVertex2d(arr->index[4][0],arr->index[4][1]);
+    glVertex2d(arr->index[7][0],arr->index[7][1]);
+    glVertex2d(arr->index[8][0],arr->index[8][1]);
     glEnd();
     glBegin(GL_POLYGON);
-    glVertex2i(arr->index[4][0],arr->index[4][1]);
-    glVertex2i(arr->index[9][0],arr->index[9][1]);
-    glVertex2i(arr->index[10][0],arr->index[10][1]);
+    glVertex2d(arr->index[4][0],arr->index[4][1]);
+    glVertex2d(arr->index[9][0],arr->index[9][1]);
+    glVertex2d(arr->index[10][0],arr->index[10][1]);
     glEnd();
     glBegin(GL_POLYGON);
-    glVertex2i(arr->index[4][0],arr->index[4][1]);
-    glVertex2i(arr->index[11][0],arr->index[11][1]);
-    glVertex2i(arr->index[12][0],arr->index[12][1]);
+    glVertex2d(arr->index[4][0],arr->index[4][1]);
+    glVertex2d(arr->index[11][0],arr->index[11][1]);
+    glVertex2d(arr->index[12][0],arr->index[12][1]);
     glEnd();
 }
